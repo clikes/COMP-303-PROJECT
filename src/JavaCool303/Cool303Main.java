@@ -1,6 +1,8 @@
 package JavaCool303;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Panel;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -17,6 +19,7 @@ public class Cool303Main {
 			frame.setMinimumSize(minimumSize );
 			
 	        JLabel label = new JLabel("Hello World",JLabel.CENTER);
+	        label.setText("hello");
 	        frame.getContentPane().add(label);
 	        JPanel panel = new JPanel();  
 	        
@@ -42,13 +45,17 @@ public class Cool303Main {
 			       // Button.setBounds(100, 100, 100, 100);
 		        	Button.setSize(new Dimension(50, 200));
 			    buttons.add(Button);
+			    
 			    panels[j].add(Button);
 			    
 			    panel.add(panels[j]);
 				}
 	          	
 	        }
-//	        
+	        
+	        Color bg = new Color(100,200, 50);		
+			//	        
+	        buttons.get(0).setBackground(bg);
 	        //frame.add(panels[0]);
 //	        for (int i = 0; i < 10; i++) {
 //	        	Integer ButtonNumber = i+1;
@@ -60,18 +67,57 @@ public class Cool303Main {
 //		        panel2.add(Button);
 //			}
 //	        
-	        // ��ʾ����
 	        //frame.pack();
 	        frame.setVisible(true);
 	    }
 
 	    public static void main(String[] args) {
-	        // ��ʾӦ�� GUI
-	    	
-	        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-	            public void run() {
-	                createAndShowGUI();
-	            }
-	        });
+	    	//createAndShowGUI();
+//	        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//	            public void run() {
+//	                createAndShowGUI();
+//	            }
+//	        });
+	    	Cool303Theme theme = new Cool303Theme();
+	    	theme.setThemeColor(new Color(200, 200, 0));
+	    	Cool303Root root = new Cool303Root(theme);
+	    	Cool303Container container = null;
+			try {
+				container = new Cool303Container(theme , "Hello World");
+			} catch (NullThemeExecption e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			container.getComponent().setLayout(new BoxLayout(container.getComponent(), 3));	
+			root.add(container);
+	    	Cool303Container[] panels = new Cool303Container[4];
+	    	ArrayList<Cool303Button> buttons = new ArrayList<Cool303Button>();
+	    	Integer ButtonNumber = 1;
+	    	try {
+	    		 for (int j = 0 ; j<4; j++) {
+			        	panels[j] = new Cool303Container(theme);
+			        	panels[j].getComponent().setLayout(new BoxLayout(panels[j].getComponent(), 2));	
+			          	for (int i = 0; i < 5; i++) {
+			        		
+				        	
+			          		Cool303Button Button = new Cool303Button(theme,ButtonNumber.toString());
+				        	ButtonNumber++;
+					       // Button.setBounds(100, 100, 100, 100);
+				        Button.getComponent().setSize(new Dimension(50, 200));
+					    buttons.add(Button);
+					    
+					    panels[j].add(Button);
+						}
+			          	container.add(panels[j]);
+			        }
+			} catch (NullThemeExecption e) {
+				// TODO: handle exception
+			}
+	    	root.paintTheme();
+	    	root.setVisible(true);
+	    	root.setSize(500, 500);
+	    	JFrame roott = new JFrame("tt");
+//	    	roott.add(new JButton());
+//	    	roott.setVisible(true);
 	    }
 }

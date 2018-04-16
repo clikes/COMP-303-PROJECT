@@ -4,26 +4,52 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class Cool303Container extends Cool303Component implements Themeable{
-	JPanel Cool303Panel;
+public class Cool303Container extends Cool303Component{
 	ArrayList<Cool303Component> components;
+	
+	public Cool303Container() {}
 	
 	public Cool303Container(Cool303Theme Theme) throws NullThemeExecption {
 		if (Theme == null) throw new NullThemeExecption();
-		setTheme(Theme);
-		Cool303Panel = new JPanel();
 		components = new ArrayList<Cool303Component>();
+		setTheme(Theme);
+		setComponent(new JPanel());
+		
 	}
 	
-	public void add(Cool303Component component) {
+	public Cool303Container(Cool303Theme Theme, String title) throws NullThemeExecption {
+		if (Theme == null) throw new NullThemeExecption();
+		components = new ArrayList<Cool303Component>();
+		setTheme(Theme);
+		setComponent(new JPanel());
+		Cool303Label Title = new Cool303Label(Theme, title);
+		getComponent().add(Title.getComponent());
 		
+	}
+	
+	
+	
+	@Override
+	public void setTheme(Cool303Theme Theme) {
+		super.setTheme(Theme);
+		for (Cool303Component cool303Component : components) {
+			cool303Component.setTheme(Theme);
+		}
+	}
+	
+	
+	
+	
+	public void add(Cool303Component component) {
 		components.add(component);
-		Cool303Panel.add(component);
-		component.setTheme(getTheme());
+		getComponent().add(component.getComponent());
 	}
 	
 	@Override
 	public void paintTheme() {
-		
+		super.paintTheme();
+		for (Cool303Component cool303Component : components) {
+			cool303Component.paintTheme();
+		}
 	}
 }
