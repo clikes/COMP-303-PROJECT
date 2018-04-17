@@ -12,20 +12,23 @@ public class Cool303Root extends JFrame implements Themeable{
 		this.Theme = theme;
 		components = new ArrayList<Cool303Component>();
 	}
+	
+	/*
+	 * Add feature to normal add
+	 */
+	public void add(Cool303Component comp) {
+		components.add(comp);
+		super.add(comp.getComponent());
+	}
+	
 	@Override
 	public void setTheme(Cool303Theme Theme) {
 		this.Theme = Theme;
-		components = new ArrayList<Cool303Component>();
 	}
 
 	@Override
 	public Cool303Theme getTheme() {
 		return Theme;
-	}
-	
-	public void add(Cool303Component comp) {
-		components.add(comp);
-		super.add(comp.getComponent());
 	}
 
 	@Override

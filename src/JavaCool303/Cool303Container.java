@@ -1,7 +1,9 @@
 package JavaCool303;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class Cool303Container extends Cool303Component{
@@ -23,6 +25,7 @@ public class Cool303Container extends Cool303Component{
 		setTheme(Theme);
 		setComponent(new JPanel());
 		Cool303Label Title = new Cool303Label(Theme, title);
+		Title.getComponent().setFont(new Font(null,   1,   15));
 		getComponent().add(Title.getComponent());
 		
 	}
@@ -39,7 +42,6 @@ public class Cool303Container extends Cool303Component{
 	
 	
 	
-	
 	public void add(Cool303Component component) {
 		components.add(component);
 		getComponent().add(component.getComponent());
@@ -51,5 +53,10 @@ public class Cool303Container extends Cool303Component{
 		for (Cool303Component cool303Component : components) {
 			cool303Component.paintTheme();
 		}
+	}
+
+	public void setBoxLayout(Cool303Container container, int i) {
+		getComponent().setLayout(new BoxLayout(getComponent(), i));
+		
 	}
 }

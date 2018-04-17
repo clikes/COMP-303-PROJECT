@@ -2,7 +2,10 @@ package JavaCool303;
 
 import java.awt.Color;
 
-public class Cool303Theme{
+public abstract class  Cool303Theme{
+	/*
+	 * A color of a theme
+	 */
 	private Color ThemeColor;
 
 	public Color getThemeColor() {

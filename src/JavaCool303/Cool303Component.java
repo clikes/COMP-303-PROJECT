@@ -8,17 +8,23 @@ public abstract class Cool303Component extends JComponent implements Themeable{
 	
 	public Cool303Component() {}
 	
+	/*
+	 * Getter and Setter should be protected, 
+	 * class from outside package should not 
+	 * touch the variable.
+	 */
+	protected JComponent getComponent() {
+		return component;
+	}
+
+	protected void setComponent(JComponent component) {
+		this.component = component;
+	}
+	
 	@Override
 	public void setTheme(Cool303Theme Theme) {
 		this.Theme = Theme;
 	}
-	
-	
-
-	public Cool303Component(JComponent component) {
-		this.setComponent(component);
-	}
-	
 	@Override
 	public Cool303Theme getTheme() {
 		return Theme;
@@ -29,12 +35,6 @@ public abstract class Cool303Component extends JComponent implements Themeable{
 		component.setBackground(Theme.getThemeColor());
 	}
 
-	public JComponent getComponent() {
-		return component;
-	}
 
-	public void setComponent(JComponent component) {
-		this.component = component;
-	}
 
 }
