@@ -1,5 +1,7 @@
 package JavaCool303;
 
+import java.awt.Color;
+
 import javax.swing.JComponent;
 
 public abstract class Cool303Component extends JComponent implements Themeable{
@@ -32,6 +34,7 @@ public abstract class Cool303Component extends JComponent implements Themeable{
 
 	@Override
 	public void paintTheme() {
+		component.setForeground(Color.white);
 		component.setBackground(Theme.getThemeColor());
 	}
 
